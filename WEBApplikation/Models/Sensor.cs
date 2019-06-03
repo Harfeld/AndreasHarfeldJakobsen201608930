@@ -12,6 +12,8 @@ namespace WEBApplikation.Models
         [Required]
         [MinLength(16)]
         [MaxLength(16)]
+        [RegularExpression("[0-9a-fA-F]+",
+            ErrorMessage = "Format skal være Hexadecimal")]
         public string SensorId { get; set; }
         [Required] public string Species { get; set; }
         [Required] public double Latitude { get; set; }

@@ -80,25 +80,7 @@ namespace WPFApplikation.ViewModels
             set
             {
                 SetProperty(ref searchedLocation, value);
-                SearchedLocations = new ObservableCollection<Location>(Locations.Where(l => l.Name.StartsWith(SearchedLocation)));
-            }
-        }
-
-        #endregion
-
-        #region Commands
-
-        ICommand _GenericCommand;
-
-        public ICommand GenericCommand
-        {
-            get
-            {
-                return _GenericCommand ?? (_GenericCommand = new DelegateCommand(
-                           () =>
-                           {
-
-                           }));
+                SearchedLocations = new ObservableCollection<Location>(Locations.Where(l => l.Name.ToLower().StartsWith(SearchedLocation.ToLower())));
             }
         }
 
@@ -153,9 +135,22 @@ namespace WPFApplikation.ViewModels
 
         void AddLocationApply(object sender, EventArgs e)
         {
-            Locations.Add(AddLocationVm.NewLocation);
-            AddLocationDlg.Close();
-            SearchedLocation = "";
+            if (AddLocationVm.NewLocation.City == null ||
+                AddLocationVm.NewLocation.Name == null ||
+                AddLocationVm.NewLocation.PostalCode == 0 ||
+                AddLocationVm.NewLocation.Road == null ||
+                AddLocationVm.NewLocation.RoadNumber == null)
+            {
+                AddLocationDlg.Close();
+                SearchedLocation = "";
+            }
+            else
+            {
+                Locations.Add(AddLocationVm.NewLocation);
+                AddLocationDlg.Close();
+                SearchedLocation = "";
+            }
+            
         }
 
         ICommand _CloseAppCommand;

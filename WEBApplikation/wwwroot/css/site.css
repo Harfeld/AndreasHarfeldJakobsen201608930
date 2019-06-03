@@ -20,12 +20,19 @@ html {
 }
 
 body {
-    background-image: url(/Images/Background2.jpeg)
+    background-image: url(/Images/Background2.jpeg);
+    background-size: cover;
 }
 
+.list-bg {
+    background: Wheat;
+    border-radius: 15px;
+    margin: 15px 0px;
+
+}
 
 .border-top {
-  border-top: 1px solid #e5e5e5;
+    border-top: 1px solid #e5e5e5;
 }
 .border-bottom {
   border-bottom: 1px solid #e5e5e5;
