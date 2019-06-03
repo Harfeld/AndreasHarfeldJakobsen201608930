@@ -12,15 +12,25 @@ namespace WEBApplikation.Controllers
 {
     public class HomeController : Controller
     {
+        private SignInManager<IdentityUser> sm;
         private GardenerRepository database;
-        public HomeController()
+        public HomeController(SignInManager<IdentityUser> _sm)
         {
+            sm = _sm;
             database = new GardenerRepository();
             database.CreateDatabase();
         }
         public IActionResult Index()
         {
-            return RedirectToAction("List","Location");
+            if (sm.IsSignedIn(User))
+            {
+                return RedirectToAction("List", "Location");
+            }
+            else
+            {
+                return View();
+            }
+            
         }
 
         public IActionResult Privacy()
