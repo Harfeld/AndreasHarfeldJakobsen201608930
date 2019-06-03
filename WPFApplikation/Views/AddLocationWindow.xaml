@@ -1,0 +1,85 @@
+﻿<Window x:Class="WPFApplikation.Views.AddLocationWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WPFApplikation.Views"
+        mc:Ignorable="d"
+        Background="{StaticResource ResourceKey=LocationWindowBrush}"
+        Title="AddLocationWindow" Height="500" Width="450">
+    <Grid Column="1">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="6*"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid Row="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Label Grid.Row="0" Content="Lokations Id:" Style="{StaticResource ResourceKey=LabelMainStyle}"/>
+            <TextBox Grid.Row="0"
+                     Style="{StaticResource ResourceKey=MainTextBox}"
+                     Width="300"
+                     Text="{Binding Path=NewLocation.LocationId}"
+                     IsReadOnly="True"
+                    />
+            <Label Grid.Row="1" Content="Navn:" Style="{StaticResource ResourceKey=LabelMainStyle}"/>
+            <TextBox Grid.Row="1"
+                     Style="{StaticResource ResourceKey=MainTextBox}"
+                     Width="300"
+                             Text="{Binding Path=NewLocation.Name}"
+                    />
+            <Label Grid.Row="2" Content="Vej:" Style="{StaticResource ResourceKey=LabelMainStyle}"/>
+            <TextBox Grid.Row="2"
+                     Style="{StaticResource ResourceKey=MainTextBox}"
+                     Width="300"
+                             Text="{Binding Path=NewLocation.Road}"
+                    />
+            <Label Grid.Row="3" Content="Vej Nummer:" Style="{StaticResource ResourceKey=LabelMainStyle}"/>
+            <TextBox Grid.Row="3"
+                     Style="{StaticResource ResourceKey=MainTextBox}"
+                     Width="300"
+                             Text="{Binding Path=NewLocation.RoadNumber}"
+                    />
+            <Label Grid.Row="4" Content="Post Nummer:" Style="{StaticResource ResourceKey=LabelMainStyle}"/>
+            <TextBox Grid.Row="4"
+                     Width="300"
+                     Style="{StaticResource ResourceKey=MainTextBox}"
+                             Text="{Binding Path=NewLocation.PostalCode}"
+                    />
+            <Label Grid.Row="5" Content="By:" Style="{StaticResource ResourceKey=LabelMainStyle}"/>
+            <TextBox Grid.Row="5"
+                     Style="{StaticResource ResourceKey=MainTextBox}"
+                     Width="300"
+                             Text="{Binding Path=NewLocation.City}"
+                    />
+        </Grid>
+        <WrapPanel Grid.Row="1">
+            <Button Content="Tilføj Træ"
+                    Style="{StaticResource ResourceKey=TextButtonStyle}"
+                    Command="{Binding Path=AddTreeCommand}"/>
+        </WrapPanel>
+        <Grid Row="2">
+            <DataGrid Margin="10,5,10,5"
+                      ItemsSource="{Binding Path=NewLocation.Trees}"
+                      IsReadOnly="True"/>
+        </Grid>
+        <WrapPanel Grid.Row="3"
+                   HorizontalAlignment="Left"
+                   VerticalAlignment="Center">
+            <Button Content="Accepter Location"
+                    Style="{StaticResource ResourceKey=TextButtonStyle}"
+                    Command="{Binding Path=ApplyCommand}"/>
+            <Button Content="Cancel Location"
+                    Style="{StaticResource ResourceKey=TextButtonStyle}"
+                    Command="{Binding Path=CancelCommand}"/>
+        </WrapPanel>
+    </Grid>
+</Window>

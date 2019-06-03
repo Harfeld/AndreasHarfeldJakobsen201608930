@@ -2,9 +2,9 @@
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace WEBApplikation.Data.Migrations
+namespace WEBApplikation.Migrations.ApplicationDb
 {
-    public partial class CreateIdentitySchema : Migration
+    public partial class newIdentityMigration : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

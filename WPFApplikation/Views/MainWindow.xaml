@@ -4,9 +4,150 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WPFApplikation"
+        xmlns:viewModels="clr-namespace:WPFApplikation.ViewModels"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
+        Background="{StaticResource ResourceKey=MainWindowBrush}"
+        Title="MainWindow" Height="550" Width="900">
+    <Window.DataContext>
+        <viewModels:MainWindowViewModel/>
+    </Window.DataContext>
+    <Window.Resources>
         
-    </Grid>
+    </Window.Resources>
+    <DockPanel>
+        <Menu Name="mainMenu" DockPanel.Dock="Left">
+            <Menu.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <VirtualizingStackPanel Orientation="Vertical"/>
+                </ItemsPanelTemplate>
+            </Menu.ItemsPanel>
+            <MenuItem Command="{Binding CloseAppCommand}">
+                <MenuItem.Header>
+                    <Image Source="../Images/close.png" Height="20" Width="20"/>
+                </MenuItem.Header>
+            </MenuItem>
+            <MenuItem Name="File">
+                <MenuItem.Header>
+                    <Image Source="../Images/save.png" Height="20" Width="20"/>
+                </MenuItem.Header>
+                <MenuItem Header="_New" Command="{Binding NewFileCommand}"/>
+                <MenuItem Header="_Open" Command="{Binding OpenFileCommand}"/>
+                <MenuItem Header="Save _As" Command="{Binding SaveAsCommand}"/>
+            </MenuItem>
+        </Menu>
+        <Grid Margin="5,5,5,5">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid Column="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="7*"/>
+                </Grid.RowDefinitions>
+                <Grid Row="0">
+                    <Label Content="Søg" Style="{StaticResource ResourceKey=LabelMainStyle}"
+                           />
+                    <TextBox Height="35" Width="350"
+                             HorizontalAlignment="Right"
+                             VerticalAlignment="Center"
+                             Margin="10,5,10,5"
+                             Text="{Binding Path=SearchedLocation, UpdateSourceTrigger=PropertyChanged}"
+                             
+                             />
+                </Grid>
+                <Grid Row="1">
+                    <DataGrid Margin="10,5,10,5"
+                              SelectedItem="{Binding Path=CurrentLocation}"
+                              ItemsSource="{Binding Path=SearchedLocations}"
+                              IsReadOnly="True"
+                              />
+                </Grid>
+            </Grid>
+            
+            <Grid Column="1">
+               <Grid.RowDefinitions>
+                   <RowDefinition Height="4*"/>
+                   <RowDefinition Height="2*"/>
+                   <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Grid Row="0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Label Grid.Row="0" Content="Lokations Id:" Style="{StaticResource ResourceKey=LabelMainStyle}"/>
+                    <TextBox Grid.Row="0"
+                             Style="{StaticResource ResourceKey=MainTextBox}"
+                             Width="300"
+                             Text="{Binding Path=CurrentLocation.LocationId}"
+                             IsReadOnly="True"
+                    />
+                    <Label Grid.Row="1" Content="Navn:" Style="{StaticResource ResourceKey=LabelMainStyle}"/>
+                    <TextBox Grid.Row="1"
+                             Style="{StaticResource ResourceKey=MainTextBox}"
+                             Width="300"
+                             Text="{Binding Path=CurrentLocation.Name}"
+                             IsReadOnly="True"
+                    />
+                    <Label Grid.Row="2" Content="Vej:" Style="{StaticResource ResourceKey=LabelMainStyle}"/>
+                    <TextBox Grid.Row="2"
+                             Style="{StaticResource ResourceKey=MainTextBox}"
+                             Width="300"
+                             Text="{Binding Path=CurrentLocation.Road}"
+                             IsReadOnly="True"
+                    />
+                    <Label Grid.Row="3" Content="Vej Nummer:" Style="{StaticResource ResourceKey=LabelMainStyle}"/>
+                    <TextBox Grid.Row="3"
+                             Style="{StaticResource ResourceKey=MainTextBox}"
+                             Width="300"
+                             Text="{Binding Path=CurrentLocation.RoadNumber}"
+                             IsReadOnly="True"
+                    />
+                    <Label Grid.Row="4" Content="Post Nummer:" Style="{StaticResource ResourceKey=LabelMainStyle}"/>
+                    <TextBox Grid.Row="4"
+                             Style="{StaticResource ResourceKey=MainTextBox}"
+                             Width="300"
+                             Text="{Binding Path=CurrentLocation.PostalCode}"
+                             IsReadOnly="True"
+                    />
+                    <Label Grid.Row="5" Content="By:" Style="{StaticResource ResourceKey=LabelMainStyle}"/>
+                    <TextBox Grid.Row="5"
+                             Style="{StaticResource ResourceKey=MainTextBox}"
+                             Width="300"
+                             Text="{Binding Path=CurrentLocation.City}"
+                             IsReadOnly="True"
+                    />
+                </Grid>
+                <Grid Row="1">
+                    <DataGrid Margin="10,5,10,5"
+                              ItemsSource="{Binding Path=CurrentLocation.Trees}"
+                              IsReadOnly="True"/>
+                </Grid>
+                <Grid Row="2">
+                    <Button Height="44" Width="44"
+                            Margin="10,5,10,5"
+                            HorizontalAlignment="Left"
+                            Name="LocationBtn"
+                            Command="{Binding Path=AddLocationCommand}"
+                            >
+                        <Grid>
+                            <Rectangle Width="33"
+                                       Height="11"
+                                       Fill="LimeGreen"
+                            />
+                            <Rectangle Width="11"
+                                       Height="33"
+                                       Fill="LimeGreen"
+                            />
+                        </Grid>
+                    </Button>
+                </Grid>
+            </Grid>
+        </Grid>
+    </DockPanel>
 </Window>

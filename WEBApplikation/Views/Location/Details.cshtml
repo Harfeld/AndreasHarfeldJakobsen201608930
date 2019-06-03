@@ -1,0 +1,49 @@
+﻿@model WEBApplikation.Models.Location
+
+@{
+    ViewData["Title"] = "Details";
+}
+<div>
+    <h4>Lokation Data</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Road)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Road)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.RoadNumber)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.RoadNumber)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.PostalCode)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.PostalCode)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.City)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.City)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-controller="Tree" asp-action="List" asp-route-id="@Model.LocationId">Måletræ liste</a> |
+    <a asp-controller="Sensor" asp-action="List" asp-route-id="@Model.LocationId">Sensor liste</a>
+</div>
+<div>
+    @await Html.PartialAsync("~/Views/Sensor/Create.cshtml",
+        new Sensor{LocationId = Model.LocationId});
+</div>

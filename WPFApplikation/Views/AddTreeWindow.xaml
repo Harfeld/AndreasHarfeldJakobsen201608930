@@ -1,0 +1,51 @@
+﻿<Window x:Class="WPFApplikation.Views.AddTreeWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WPFApplikation.Views"
+        mc:Ignorable="d"
+        Background="{StaticResource ResourceKey=TreeWindowBrush}"
+        Title="AddTreeWindow" Height="200" Width="400">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1.5*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid Row="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Label Grid.Row="0" Content="Antal:" Style="{StaticResource ResourceKey=LabelMainStyle}"/>
+            <TextBox Grid.Row="0"
+                     Height="30" Width="250"
+                     HorizontalAlignment="Right"
+                     VerticalAlignment="Center"
+                     Margin="10,5,10,5"
+                     Text="{Binding Path=NewTree.Amount}"
+            />
+            <Label Grid.Row="1" Content="Sort:" Style="{StaticResource ResourceKey=LabelMainStyle}"/>
+            <TextBox Grid.Row="1"
+                     Height="30" Width="250"
+                     HorizontalAlignment="Right"
+                     VerticalAlignment="Center"
+                     Margin="10,5,10,5"
+                     Text="{Binding Path=NewTree.Species}"
+            />
+        </Grid>
+        <Grid Row="1">
+            <WrapPanel Grid.Row="3" Orientation="Horizontal"
+                       HorizontalAlignment="Center"
+                       VerticalAlignment="Center">
+                <Button Content="Accepter Træ"
+                        Style="{StaticResource ResourceKey=TextButtonStyle}"
+                        Click="ButtonBase_OnClick"
+                        />
+                <Button Content="Cancel Træ"
+                        Style="{StaticResource ResourceKey=TextButtonStyle}"
+                        IsCancel="True"/>
+            </WrapPanel>
+        </Grid>
+    </Grid>
+</Window>

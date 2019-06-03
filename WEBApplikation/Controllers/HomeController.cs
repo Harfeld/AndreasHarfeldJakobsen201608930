@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using WEBApplikation.DAL;
 using WEBApplikation.Models;
 
 namespace WEBApplikation.Controllers
@@ -12,7 +14,7 @@ namespace WEBApplikation.Controllers
     {
         public IActionResult Index()
         {
-            return View();
+            return RedirectToAction("List","Location");
         }
 
         public IActionResult Privacy()

@@ -15,7 +15,7 @@
 
 
   <ItemGroup>
-    <Folder Include="DAL\" />
+    <Folder Include="Data\Migrations\" />
     <Folder Include="wwwroot\Images\" />
   </ItemGroup>
 
