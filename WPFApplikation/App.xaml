@@ -5,6 +5,7 @@
              StartupUri="Views/MainWindow.xaml">
     <Application.Resources>
         <SolidColorBrush x:Key="MainWindowBrush" Color="#F2D0A4"/>
+
         <SolidColorBrush x:Key="LocationWindowBrush" Color="#FFECCC"/>
         <SolidColorBrush x:Key="TreeWindowBrush" Color="#C8D6AF"/>
 

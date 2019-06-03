@@ -12,6 +12,12 @@ namespace WEBApplikation.Controllers
 {
     public class HomeController : Controller
     {
+        private GardenerRepository database;
+        public HomeController()
+        {
+            database = new GardenerRepository();
+            database.CreateDatabase();
+        }
         public IActionResult Index()
         {
             return RedirectToAction("List","Location");

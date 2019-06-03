@@ -18,7 +18,7 @@ namespace WEBApplikation.DAL
         public GardenerRepository()
         {
             _context = new DbContextOptionsBuilder<GardenerDbContext>()
-                .UseSqlServer("Server=(localdb)\\MSSQLLocalDB;Database=WebGardenerDatabase;Trusted_Connection=true;MultipleActiveResultSets=true")
+                .UseSqlServer("Server=(localdb)\\MSSQLLocalDB;Database=EksamenGUIDatabase;Trusted_Connection=true;MultipleActiveResultSets=true")
                 .Options;
         }
 

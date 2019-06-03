@@ -18,11 +18,6 @@ namespace WEBApplikation.Controllers
             database = new GardenerRepository();
         }
 
-        public IActionResult Index()
-        {
-            return View(database.GetLocations().Result);
-        }
-
         public IActionResult List()
         {
             return View(database.GetLocations().Result);

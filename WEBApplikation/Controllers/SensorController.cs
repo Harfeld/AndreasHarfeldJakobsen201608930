@@ -29,8 +29,9 @@ namespace WEBApplikation.Controllers
 
         public IActionResult Create(Sensor sensor)
         {
+            var id = sensor.LocationId;
             database.AddSensor(sensor).Wait();
-            return RedirectToAction("Details", "Location", sensor.LocationId);
+            return RedirectToAction("List", "Location");
         }
     }
 }

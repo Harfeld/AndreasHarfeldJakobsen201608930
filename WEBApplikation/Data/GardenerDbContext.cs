@@ -2,12 +2,13 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using WEBApplikation.Models;
 
 namespace WEBApplikation.Data.Migrations
 {
-    public class GardenerDbContext : DbContext
+    public class GardenerDbContext : IdentityDbContext
     {
         public DbSet<Location> Locations { get; set; }
         public DbSet<Tree> Trees { get; set; }
@@ -18,6 +19,7 @@ namespace WEBApplikation.Data.Migrations
            
         }
 
+
         public GardenerDbContext(DbContextOptions<GardenerDbContext> options)
             : base(options)
         { }
@@ -26,12 +28,13 @@ namespace WEBApplikation.Data.Migrations
         {
             if (!optionsBuilder.IsConfigured)
             {
-                optionsBuilder.UseSqlServer("Server=(localdb)\\MSSQLLocalDB;Database=WebGardenerDatabase;Trusted_Connection=true;MultipleActiveResultSets=true");
+                optionsBuilder.UseSqlServer("Server=(localdb)\\MSSQLLocalDB;Database=EksamenGUIDatabase;Trusted_Connection=true;MultipleActiveResultSets=true");
             }
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            base.OnModelCreating(modelBuilder);
             modelBuilder.Entity<Tree>()
                 .HasOne(t => t.Location)
                 .WithMany(l => l.Trees)
