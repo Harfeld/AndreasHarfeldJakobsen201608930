@@ -1,0 +1,41 @@
+@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+
+<div id="helloVue">
+    <ul class="navbar-nav">
+        @if (SignInManager.IsSignedIn(User))
+        {
+            <li class="nav-item">
+                <a v-if="timepadagen < 12" class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">{{morning}} @User.Identity.Name!</a>
+                <a v-if="timepadagen >= 12 && timepadagen < 17" class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">{{afternoon}} @User.Identity.Name!</a>
+                <a v-if="timepadagen > 17" class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">{{evening}} @User.Identity.Name!</a>
+            </li>
+            <li class="nav-item">
+                <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
+                    <button type="submit" class="nav-link btn btn-link text-dark">Logout</button>
+                </form>
+            </li>
+        }
+        else
+        {
+            <li class="nav-item">
+                <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Register">Register</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Login">Login</a>
+            </li>
+        }
+    </ul>
+</div>
+<script>
+    new Vue({
+        el: '#helloVue',
+        data: {
+            morning: 'Good Morning',
+            afternoon: 'Good Afternoon',
+            evening: 'Good Evening',
+            timepadagen: new Date().getHours()
+        }
+    });
+</script>
