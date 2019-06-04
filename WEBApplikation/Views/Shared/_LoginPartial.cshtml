@@ -2,6 +2,7 @@
 @inject SignInManager<IdentityUser> SignInManager
 @inject UserManager<IdentityUser> UserManager
 
+<!--Scriptet er stærkt inspireret af kursus materialet-->
 <div id="helloVue">
     <ul class="navbar-nav">
         @if (SignInManager.IsSignedIn(User))
